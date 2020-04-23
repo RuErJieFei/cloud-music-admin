@@ -38,4 +38,13 @@ public interface SysRoleService extends IService<SysRole> {
      * @return
      */
     Map selectRoleById(int roleId);
+
+    /**
+     * 检查roleId是否在roles中存在
+     *
+     * @param roles
+     * @param roleId
+     * @return
+     */
+    public boolean checkRole(List<SysRole> roles, int roleId);
 }

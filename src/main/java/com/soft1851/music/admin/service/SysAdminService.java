@@ -42,5 +42,12 @@ public interface SysAdminService extends IService<SysAdmin> {
      */
     List<Map<String, List<SysMenu>>> getMenusListByAdminId(String adminId);
 
+    /**
+     * 根据name查询Admin信息，包含其所有角色
+     *
+     * @param name
+     * @return
+     */
+    SysAdmin getAdminAndRolesByName(String name);
 
 }

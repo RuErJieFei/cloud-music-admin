@@ -14,7 +14,7 @@ class SysAdminServiceTest {
     private SysAdminService sysAdminService;
     @Test
     void login() {
-        LoginDto loginDto = LoginDto.builder().name("taoranran").password("123456").build();
+        LoginDto loginDto = LoginDto.builder().name("1").password("1").verifyCode("1").build();
         sysAdminService.login(loginDto);
     }
 
@@ -22,5 +22,10 @@ class SysAdminServiceTest {
     @Test
     void getAdmin() {
         System.out.println(sysAdminService.getAdmin("1"));
+    }
+
+    @Test
+    void getAdminAndRolesByName() {
+        System.out.println(sysAdminService.getAdminAndRolesByName("1"));
     }
 }

@@ -44,10 +44,13 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
 
     @Override
     public boolean login(LoginDto loginDto) {
+        //注册一个wrapper用于查询
         QueryWrapper<SysAdmin> wrapper = new QueryWrapper<>();
-        wrapper.eq("name",loginDto.getName());
+        //查询的参数是name
+        wrapper.eq("name", loginDto.getName());
+        //查询的结果是password
         wrapper.select("password");
-        SysAdmin admin1 =sysAdminMapper.selectOne(wrapper);
+        SysAdmin admin1 = sysAdminMapper.selectOne(wrapper);
         if (admin1 != null) {
             String pass = Md5Util.getMd5(loginDto.getPassword(), true, 32);
             if (admin1.getPassword().equals(pass)) {
@@ -93,5 +96,10 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
             }
             return sysMenus;
         }
+    }
+
+    @Override
+    public SysAdmin getAdminAndRolesByName(String name) {
+        return sysAdminMapper.selectByName(name);
     }
 }

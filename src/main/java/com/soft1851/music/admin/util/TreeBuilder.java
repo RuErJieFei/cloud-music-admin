@@ -21,13 +21,10 @@ public class TreeBuilder {
     public static List<TreeNode> buildTreeByLoop(List<TreeNode> treeNodes) {
 
         List<TreeNode> trees = new ArrayList<>();
-
         for (TreeNode treeNode : treeNodes) {
-
             if (treeNode.getParentId() == 0) {
                 trees.add(treeNode);
             }
-
             for (TreeNode it : treeNodes) {
                 if (it.getParentId().equals(treeNode.getId())) {
                     if (treeNode.getSubMenus() == null) {

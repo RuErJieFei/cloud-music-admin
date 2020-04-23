@@ -50,7 +50,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     }
 
     @Override
-    public Map selectRoleById(int roleId) {
+    public Map<String, Object> selectRoleById(int roleId) {
+        //结合数据库设计，将扁平的数据，转换成树状结构
         SysRole sysRole = sysRoleMapper.selectRoleById(roleId);
         Map<String, Object> map = new TreeMap<>();
         map.put("roleName", sysRole.getRoleName());
@@ -58,15 +59,27 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         List<SysMenu> menus = sysRole.getMenus();
         for (SysMenu menu : menus) {
             if (menu.getParentId() == 0) {
-                TreeNode treeNode = new TreeNode(menu.getId(), 0, menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort());
+                TreeNode treeNode = new TreeNode(menu.getId(), 0, menu.getType(), menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort(), new ArrayList<>());
                 list.add(treeNode);
             } else {
-                TreeNode treeNode = new TreeNode(menu.getId(), menu.getParentId(), menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort());
+                TreeNode treeNode = new TreeNode(menu.getId(), menu.getParentId(), menu.getType(), menu.getTitle(), menu.getIcon(), menu.getPath(), menu.getSort(), new ArrayList<>());
                 list.add(treeNode);
             }
         }
         List<TreeNode> trees = TreeBuilder.buildTreeByLoop(list);
         map.put("menus", trees);
         return map;
+    }
+
+    @Override
+    public boolean checkRole(List<SysRole> roles, int roleId) {
+        boolean flag = false;
+        for (SysRole role : roles) {
+            if (roleId == role.getRoleId()) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
     }
 }

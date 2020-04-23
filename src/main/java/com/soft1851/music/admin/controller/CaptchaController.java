@@ -67,6 +67,7 @@ public class CaptchaController {
 
     @GetMapping("/verify")
     public ResponseResult getVerify(String name) {
+        //生成图片验证
         ImageUtil imageUtil = new ImageUtil();
         String ba64Image = "data:image/png;base64," + imageUtil.getRandomCodeBase64();
         String text = imageUtil.string;
