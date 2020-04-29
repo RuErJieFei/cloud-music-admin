@@ -1,9 +1,10 @@
 package com.soft1851.music.admin.service.impl;
 
-import com.soft1851.music.admin.entity.TypeSongList;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.soft1851.music.admin.domain.entity.TypeSongList;
 import com.soft1851.music.admin.mapper.TypeSongListMapper;
 import com.soft1851.music.admin.service.TypeSongListService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

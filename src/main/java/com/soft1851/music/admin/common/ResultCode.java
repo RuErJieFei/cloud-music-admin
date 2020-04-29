@@ -25,6 +25,7 @@ public enum ResultCode {
 
 
     /* 用户错误：20001-29999*/
+    USER_INPUT_ERROR(20000, "用户名输入错误或验证码错误"),
     USER_NOT_SIGN_IN(20001, "请先登录"),
     USER_PASSWORD_ERROR(20002, "密码错误"),
     USER_ACCOUNT_ERROR(20003, "账号错误"),
@@ -36,11 +37,13 @@ public enum ResultCode {
     USER_NOT_FOUND(20009, "用户不存在"),
     USER_NO_AUTH(20019, "用户权限不足"),
     USER_TOKEN_EXPIRES(200010, "Token已过期"),
+    USER_AUTH_ERROR(200011, "用户认证失败"),
 
 
     /* 业务错误：30001-39999 */
     SMS_ERROR(30001, "短信业务出现问题"),
     UPLOAD_ERROR(30002, "上传文件业务出现问题"),
+    DATABASE_EXPORT_ERROR(30003, "数据表导出错误"),
 
     /* 数据错误：40001-49999 */
     RESULT_CODE_DATA_NONE(50001, "数据未找到"),

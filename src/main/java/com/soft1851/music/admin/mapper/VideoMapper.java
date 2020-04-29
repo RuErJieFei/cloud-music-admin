@@ -1,7 +1,8 @@
 package com.soft1851.music.admin.mapper;
 
-import com.soft1851.music.admin.entity.Video;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.soft1851.music.admin.domain.entity.Video;
 
 /**
  * <p>

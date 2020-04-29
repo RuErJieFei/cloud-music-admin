@@ -43,10 +43,10 @@ spring:
 # Mybatis-Plus配置
 mybatis-plus:
   configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     jdbc-type-for-null: 'null'
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.sofot1851.music.admin.entity
+  type-aliases-package: com.sofot1851.music.admin.domain.entity
   global-config:
     db-config:
       #主键类型：auto主键自增，input用户输入id，id_worker全局唯一数字id，UUID全局唯一的UUID

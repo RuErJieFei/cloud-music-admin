@@ -1,25 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.soft1851.music.admin.mapper.SongListMapper">
-
-    <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.soft1851.music.admin.entity.SongList">
-        <id column="song_list_id" property="songListId" />
-        <result column="song_list_name" property="songListName" />
-        <result column="thumbnail" property="thumbnail" />
-        <result column="type" property="type" />
-        <result column="song_count" property="songCount" />
-        <result column="like_count" property="likeCount" />
-        <result column="comment_count" property="commentCount" />
-        <result column="delete_flag" property="deleteFlag" />
-        <result column="update_time" property="updateTime" />
-        <result column="create_time" property="createTime" />
-        <result column="play_counts" property="playCounts" />
+    <resultMap id="songListMap" type="com.soft1851.music.admin.domain.entity.SongList">
+        <result property="songListId" column="song_list_id" javaType="java.lang.String"/>
+        <result property="songListName" column="song_list_name" javaType="java.lang.String"/>
+        <result property="thumbnail" column="thumbnail" javaType="java.lang.String"/>
+        <result property="type" column="type" javaType="java.lang.String"/>
+        <result property="songCount" column="song_count" javaType="java.math.BigDecimal"/>
+        <result property="likeCount" column="like_count" javaType="java.math.BigDecimal"/>
+        <result property="commentCount" column="comment_count" javaType="java.math.BigDecimal"/>
+        <result property="deleteFlag" column="delete_flag" javaType="java.lang.Integer"/>
+        <result property="playCounts" column="play_counts" javaType="java.lang.Integer"/>
+        <collection property="songs" ofType="com.soft1851.music.admin.domain.entity.Song">
+            <result property="songId" column="song_id" javaType="java.lang.String"/>
+            <result property="name" column="song_name" javaType="java.lang.String"/>
+            <result property="singer" column="singer" javaType="java.lang.String"/>
+            <result property="sortId" column="sort_id" javaType="java.lang.String"/>
+            <result property="duration" column="duration" javaType="java.lang.String"/>
+            <result property="thumbnail" column="thumbnail" javaType="java.lang.String"/>
+            <result property="url" column="url" javaType="java.lang.String"/>
+            <result property="commentCount" column="comment_count" javaType="java.lang.Integer"/>
+            <result property="likeCount" column="like_count" javaType="java.lang.Integer"/>
+            <result property="playCount" column="play_count" javaType="java.lang.Integer"/>
+            <result property="deleteFlag" column="delete_flag" javaType="java.lang.String"/>
+        </collection>
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        song_list_id, song_list_name, thumbnail, type, song_count, like_count, comment_count, delete_flag, update_time, create_time, play_counts
-    </sql>
-
+    <select id="selectSongListById" resultMap="songListMap">
+        SELECT t3.song_list_id,
+               t3.song_list_name,
+               t3.thumbnail,
+               t3.type,
+               t3.song_count,
+               t3.like_count,
+               t3.comment_count,
+               t3.delete_flag,
+               t3.play_counts,
+               t1.song_id,
+               t1.song_name,
+               t1.singer,
+               t1.sort_id,
+               t1.duration,
+               t1.thumbnail,
+               t1.url,
+               t1.comment_count,
+               t1.like_count,
+               t1.play_count,
+               t1.delete_flag
+        FROM song t1,
+             song_list_music t2,
+             song_list t3
+        WHERE t1.song_id = t2.song_id
+          AND t2.song_list_id = t3.song_list_id
+          AND t3.song_list_id = #{songListId}
+    </select>
 </mapper>

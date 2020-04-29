@@ -1,9 +1,10 @@
 package com.soft1851.music.admin.service.impl;
 
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.soft1851.music.admin.entity.RoleAdmin;
-import com.soft1851.music.admin.entity.SysMenu;
-import com.soft1851.music.admin.entity.SysRole;
+import com.soft1851.music.admin.domain.entity.RoleAdmin;
+import com.soft1851.music.admin.domain.entity.SysMenu;
+import com.soft1851.music.admin.domain.entity.SysRole;
 import com.soft1851.music.admin.mapper.SysRoleMapper;
 import com.soft1851.music.admin.service.RoleAdminService;
 import com.soft1851.music.admin.service.SysRoleService;
@@ -31,23 +32,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     private SysRoleMapper sysRoleMapper;
     @Resource
     private RoleAdminService roleAdminService;
-
-    @Override
-    public List<SysRole> getRoleListById(String adminId) {
-        List<RoleAdmin> roleAdmins = roleAdminService.getRoleListByAdminId(adminId);
-        List<SysRole> sysRoles = new ArrayList<>(5);
-        SysRole sysRole = null;
-        for (RoleAdmin roleAdmin : roleAdmins) {
-            sysRole = getRoleById(roleAdmin.getRoleId());
-            sysRoles.add(sysRole);
-        }
-        return sysRoles;
-    }
-
-    @Override
-    public SysRole getRoleById(String id) {
-        return sysRoleMapper.selectById(id);
-    }
 
     @Override
     public Map<String, Object> selectRoleById(int roleId) {
@@ -82,4 +66,23 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         }
         return flag;
     }
+
+    @Override
+    public List<SysRole> getRoleListById(String adminId) {
+        List<RoleAdmin> roleAdmins = roleAdminService.getRoleListByAdminId(adminId);
+        List<SysRole> sysRoles = new ArrayList<>(5);
+        SysRole sysRole = null;
+        for (RoleAdmin roleAdmin : roleAdmins) {
+            sysRole = getRoleById(roleAdmin.getRoleId());
+            sysRoles.add(sysRole);
+        }
+        return sysRoles;
+    }
+
+    @Override
+    public SysRole getRoleById(String id) {
+        return sysRoleMapper.selectById(id);
+    }
+
+
 }

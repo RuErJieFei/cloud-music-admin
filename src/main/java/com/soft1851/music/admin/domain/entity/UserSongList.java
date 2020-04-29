@@ -1,54 +1,49 @@
-package com.soft1851.music.admin.entity;
+package com.soft1851.music.admin.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
  * 
  * </p>
  *
- * @author yy
- * @since 2020-04-21
+ * @author mq_xu
+ * @since 2020-04-22
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("song_comment")
-public class SongComment extends Model<SongComment> {
+@TableName("user_song_list")
+public class UserSongList extends Model<UserSongList> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * id
+     * 用户歌单id
      */
     @TableId("id")
     private String id;
 
     /**
-     * 歌曲id
+     * 歌单id
      */
-    @TableField("song_id")
-    private String songId;
+    @TableField("song_list_id")
+    private String songListId;
 
     /**
-     * userid
+     * 用户id
      */
     @TableField("user_id")
     private String userId;
-
-    /**
-     * 评论内容
-     */
-    @TableField("comment_content")
-    private String commentContent;
 
     /**
      * 创建时间
@@ -61,24 +56,6 @@ public class SongComment extends Model<SongComment> {
      */
     @TableField("update_time")
     private LocalDateTime updateTime;
-
-    /**
-     * 歌单id
-     */
-    @TableField("song_list_id")
-    private String songListId;
-
-    /**
-     * 视频id
-     */
-    @TableField("vido_id")
-    private String vidoId;
-
-    /**
-     * 点赞量
-     */
-    @TableField("like_counts")
-    private Integer likeCounts;
 
 
     @Override

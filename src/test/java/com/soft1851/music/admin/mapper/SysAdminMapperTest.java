@@ -12,7 +12,11 @@ class SysAdminMapperTest {
 
     @Test
     void selectByName() {
-//        System.out.println(sysAdminMapper.selectById("1"));
         System.out.println(sysAdminMapper.selectByName("1"));
+    }
+
+    @Test
+    void getSysAdminByName() {
+        System.out.println(sysAdminMapper.getSysAdminByName("1"));
     }
 }

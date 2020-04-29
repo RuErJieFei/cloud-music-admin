@@ -1,7 +1,7 @@
 package com.soft1851.music.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.soft1851.music.admin.entity.RoleAdmin;
+import com.soft1851.music.admin.domain.entity.RoleAdmin;
 
 import java.util.List;
 
@@ -15,7 +15,8 @@ import java.util.List;
  */
 public interface RoleAdminService extends IService<RoleAdmin> {
     /**
-     *  通过adminId获取角色列表
+     * 通过adminId获取角色列表
+     *
      * @param adminId
      * @return
      */

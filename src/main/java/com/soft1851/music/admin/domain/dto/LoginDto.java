@@ -1,4 +1,4 @@
-package com.soft1851.music.admin.dto;
+package com.soft1851.music.admin.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 /**
  * @ClassName LoginDto
  * @Description TODO
- * @Author xiaobinggan
- * @Date 2020/4/21 2:14 下午
+ * @Author mq_xu
+ * @Date 2020/4/21
  * @Version 1.0
- **/
+ */
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class LoginDto {
     private String name;
     private String password;

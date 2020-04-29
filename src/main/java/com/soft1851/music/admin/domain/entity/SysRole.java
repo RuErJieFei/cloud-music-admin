@@ -1,4 +1,4 @@
-package com.soft1851.music.admin.entity;
+package com.soft1851.music.admin.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -14,22 +14,23 @@ import java.util.List;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
- * @author yy
- * @since 2020-04-21
+ * @author mq_xu
+ * @since 2020-04-22
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_role")
 public class SysRole extends Model<SysRole> {
 
     private static final long serialVersionUID = 1L;
+
 
     /**
      * 主键
@@ -50,7 +51,9 @@ public class SysRole extends Model<SysRole> {
     @TableField("description")
     private String description;
 
+    @JsonIgnore
     private List<SysMenu> menus;
+
 
     @Override
     protected Serializable pkVal() {

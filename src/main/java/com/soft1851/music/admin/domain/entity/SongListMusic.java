@@ -1,60 +1,49 @@
-package com.soft1851.music.admin.entity;
+package com.soft1851.music.admin.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
  * 
  * </p>
  *
- * @author yy
- * @since 2020-04-21
+ * @author mq_xu
+ * @since 2020-04-22
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("song_like")
-public class SongLike extends Model<SongLike> {
+@TableName("song_list_music")
+public class SongListMusic extends Model<SongListMusic> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 点赞id
+     * id
      */
-    @TableId("like_id")
-    private String likeId;
+    @TableId("id")
+    private String id;
 
     /**
-     * 点赞用户id
+     * 歌曲歌单id
      */
-    @TableField("user_id")
-    private String userId;
+    @TableField("song_list_id")
+    private String songListId;
 
     /**
      * 歌曲id
      */
     @TableField("song_id")
     private String songId;
-
-    /**
-     * 评论id
-     */
-    @TableField("comment_id")
-    private String commentId;
-
-    /**
-     * 视频id
-     */
-    @TableField("video_id")
-    private String videoId;
 
     /**
      * 创建时间
@@ -69,15 +58,15 @@ public class SongLike extends Model<SongLike> {
     private LocalDateTime updateTime;
 
     /**
-     * 歌单id
+     * 榜单排名
      */
-    @TableField("song_list_id")
-    private String songListId;
+    @TableField("ratio")
+    private Integer ratio;
 
 
     @Override
     protected Serializable pkVal() {
-        return this.likeId;
+        return this.id;
     }
 
 }

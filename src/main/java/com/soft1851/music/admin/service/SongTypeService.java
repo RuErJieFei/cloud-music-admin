@@ -1,11 +1,12 @@
 package com.soft1851.music.admin.service;
 
-import com.soft1851.music.admin.entity.SongType;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.soft1851.music.admin.domain.entity.SongType;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author yy
