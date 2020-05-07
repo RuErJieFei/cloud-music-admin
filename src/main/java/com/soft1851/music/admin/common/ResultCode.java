@@ -43,13 +43,15 @@ public enum ResultCode {
     /* 业务错误：30001-39999 */
     SMS_ERROR(30001, "短信业务出现问题"),
     UPLOAD_ERROR(30002, "上传文件业务出现问题"),
-    DATABASE_EXPORT_ERROR(30003, "数据表导出错误"),
+    CAPTCHA_ERROR(30003, "验证码业务出现问题"),
+    DATABASE_EXPORT_ERROR(30004, "数据表导出错误"),
 
     /* 数据错误：40001-49999 */
     RESULT_CODE_DATA_NONE(50001, "数据未找到"),
     DATA_IS_WRONG(50002, "数据有误"),
     DATA_ALREADY_EXISTED(50003, "数据已存在"),
     DATABASE_ERROR(50004, "数据库操作异常"),
+    FILE_UPLOAD_FAILURE(5005, "文件上传失败"),
 
 
     /* 服务器或系统错误：50001-599999 */

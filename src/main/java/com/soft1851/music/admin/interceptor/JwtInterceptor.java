@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @ClassName JwtInterceptor
  * @Description Jwt拦截器
- * @Author mq_xu
+ * @Author xiaobinggan
  * @Date 2020/4/15
  * @Version 1.0
  */
@@ -43,6 +43,7 @@ public class JwtInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader("Authorization");
+        log.info(token);
         //认证
         if (token == null) {
             //通过自定义异常抛出未登录的信息，由全局统一处理
@@ -53,7 +54,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             log.info("## id= {}", adminId);
             //到redis中检查是否存在以adminId为key的数据，如果不存在，要么过期了要么不是这个id的用户
             if (!redisService.existsKey(adminId)) {
-                log.info("### 用户认证失败 ###");
+//                log.info("### 用户认证失败 ###");
                 throw new CustomException("用户认证失败", ResultCode.USER_AUTH_ERROR);
             }
             //用这个secrect私钥从token中解析出roles字符串

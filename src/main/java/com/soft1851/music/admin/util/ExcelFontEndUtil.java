@@ -19,7 +19,7 @@ import java.util.*;
  * @Version 1.0
  */
 @Slf4j
-public class ExcelUtils {
+public class ExcelFontEndUtil {
     //list 变量是导出的数据，map存放表头的标题信息，title表格名
     public static void exportExcel(HttpServletResponse response, List list, Map<String, String> map, String title){
         // 通过工具类创建writer

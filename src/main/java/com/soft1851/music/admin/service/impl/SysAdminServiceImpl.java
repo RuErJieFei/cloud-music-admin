@@ -1,9 +1,11 @@
 package com.soft1851.music.admin.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.soft1851.music.admin.common.ResultCode;
 import com.soft1851.music.admin.domain.dto.LoginDto;
+import com.soft1851.music.admin.domain.dto.UserDto;
 import com.soft1851.music.admin.domain.entity.SysAdmin;
 import com.soft1851.music.admin.domain.entity.SysMenu;
 import com.soft1851.music.admin.domain.entity.SysRole;
@@ -17,6 +19,7 @@ import com.soft1851.music.admin.util.JwtTokenUtil;
 import com.soft1851.music.admin.util.Md5Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -31,6 +34,7 @@ import java.util.*;
  */
 @Service
 @Slf4j
+@Transactional(rollbackFor = Exception.class)
 public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> implements SysAdminService {
     @Resource
     private SysAdminMapper sysAdminMapper;
@@ -103,5 +107,14 @@ public class SysAdminServiceImpl extends ServiceImpl<SysAdminMapper, SysAdmin> i
             }
             return sysMenus;
         }
+    }
+
+    @Override
+    public int updateInfo(UserDto userDto) {
+        UpdateWrapper<SysAdmin> wrapper = new UpdateWrapper<>();
+        wrapper.set("name", userDto.getUsername())
+                .set("password", userDto.getPassword())
+                .set("avatar", userDto.getAvatar()).eq("id", userDto.getUserId());
+        return sysAdminMapper.update(new SysAdmin(), wrapper);
     }
 }

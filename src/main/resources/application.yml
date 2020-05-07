@@ -1,6 +1,12 @@
 server:
   port: 8080
 spring:
+  # 上传文件设置
+  servlet:
+    multipart:
+      max-file-size: 10485760
+      max-request-size: 10485760
+      enabled: true
   # jackson配置
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -43,6 +49,7 @@ spring:
 # Mybatis-Plus配置
 mybatis-plus:
   configuration:
+    # sql日志
     #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     jdbc-type-for-null: 'null'
   mapper-locations: classpath:mapper/*.xml

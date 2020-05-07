@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.util.Base64;
 
 /**
- * @author taoranran
+ * @author xiaobinggan
  */
 public class Md5Util {
     /**

@@ -3,7 +3,7 @@ package com.soft1851.music.admin.controller;
 
 import com.soft1851.music.admin.domain.entity.Song;
 import com.soft1851.music.admin.service.FileService;
-import com.soft1851.music.admin.util.ExcelUtils;
+import com.soft1851.music.admin.util.ExcelFontEndUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,6 +38,6 @@ public class FileController {
         assert response != null;
 //        response.setContentType("application/vnd.ms-excel;charset=utf-8");
         response.setHeader("Content-Disposition", "attachment");
-        ExcelUtils.exportExcel(response, list, fileService.exportSongList(), "歌单表");
+        ExcelFontEndUtil.exportExcel(response, list, fileService.exportSongList(), "歌单表");
     }
 }

@@ -6,11 +6,20 @@ import com.soft1851.music.admin.common.ResultCode;
 import com.soft1851.music.admin.exception.CustomException;
 import com.soft1851.music.admin.exception.JwtException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.validation.ConstraintViolationException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @ClassName GlobalExceptionHandler
@@ -75,4 +84,39 @@ public class GlobalExceptionHandler {
         return ResponseResult.failure(ResultCode.RESULT_CODE_DATA_NONE);
     }
 
+    /**
+     * IO异常的处理
+     *
+     * @param exception
+     * @return ResponseResult
+     */
+    @ExceptionHandler(value = {IOException.class})
+    @ResponseBody
+    public ResponseResult sendError(IOException exception) {
+        log.error(exception.getMessage());
+        return ResponseResult.failure(ResultCode.CAPTCHA_ERROR);
+    }
+
+    /**
+     * 参数认证处理
+     *
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String filedName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(filedName, errorMessage);
+        });
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
 }

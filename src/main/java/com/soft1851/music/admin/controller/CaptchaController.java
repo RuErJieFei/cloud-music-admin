@@ -5,6 +5,7 @@ import com.soft1851.music.admin.common.ResponseResult;
 import com.soft1851.music.admin.service.RedisService;
 import com.soft1851.music.admin.util.ImageUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -66,14 +67,19 @@ public class CaptchaController {
     }
 
     @GetMapping("/verify")
-    public ResponseResult getVerify(String name) {
-        //生成图片验证
-        ImageUtil imageUtil = new ImageUtil();
-        String ba64Image = "data:image/png;base64," + imageUtil.getRandomCodeBase64();
-        String text = imageUtil.string;
-        //将验证码存入redis，配置的失效时间单位是分钟
-        redisService.set(name, text, 10L);
-        return ResponseResult.success(ba64Image);
+    public ResponseResult getVerify(@Param("name") String name) {
+        if (name == null) {
+            throw new IllegalArgumentException();
+        } else {
+            //生成图片验证
+            ImageUtil imageUtil = new ImageUtil();
+            String ba64Image = "data:image/png;base64," + imageUtil.getRandomCodeBase64();
+            String text = imageUtil.string;
+            log.info(text);
+            //将验证码存入redis，配置的失效时间单位是分钟
+            redisService.set(name, text, 10L);
+            return ResponseResult.success(ba64Image);
+        }
     }
 }
 

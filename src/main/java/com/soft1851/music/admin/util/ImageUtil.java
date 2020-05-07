@@ -18,9 +18,9 @@ public class ImageUtil {
     private static Random random = new Random();
     private static String randomString = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWSYZ";
     //验证码的宽
-    private static int width = 165;
+    private static int width = 175;
     //验证码的高
-    private static int height = 45;
+    private static int height = 50;
     //验证码中夹杂的干扰线数量
     private static int lineSize = 30;
     //验证码字符个数

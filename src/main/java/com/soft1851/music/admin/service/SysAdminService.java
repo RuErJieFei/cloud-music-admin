@@ -3,6 +3,7 @@ package com.soft1851.music.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.soft1851.music.admin.domain.dto.LoginDto;
+import com.soft1851.music.admin.domain.dto.UserDto;
 import com.soft1851.music.admin.domain.entity.SysAdmin;
 import com.soft1851.music.admin.domain.entity.SysMenu;
 
@@ -57,4 +58,12 @@ public interface SysAdminService extends IService<SysAdmin> {
      * @return
      */
     List<Map<String, List<SysMenu>>> getMenusListByAdminId(String adminId);
+
+    /**
+     * 修改个人信息
+     *
+     * @param userDto
+     * @return
+     */
+    int updateInfo(UserDto userDto);
 }

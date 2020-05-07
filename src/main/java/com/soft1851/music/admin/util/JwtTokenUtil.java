@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @ClassName JwtTokenUtil
  * @Description JWT加密解密工具类
- * @Author mq_xu
+ * @Author xiaobinggan
  * @Date 2020/4/15
  * @Version 1.0
  */
